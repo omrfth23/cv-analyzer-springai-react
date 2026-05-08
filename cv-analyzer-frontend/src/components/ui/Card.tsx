@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import { type ReactNode, type CSSProperties } from "react";
 import { motion } from "framer-motion";
 
 interface Props {
@@ -6,9 +6,10 @@ interface Props {
   children: ReactNode;
   className?: string;
   delay?: number;
+  style?: CSSProperties;
 }
 
-export const Card = ({ title, children, delay = 0 }: Props) => (
+export const Card = ({ title, children, delay = 0, style }: Props) => (
   <motion.div
     initial={{ opacity: 0, y: 16 }}
     animate={{ opacity: 1, y: 0 }}
@@ -18,6 +19,7 @@ export const Card = ({ title, children, delay = 0 }: Props) => (
       border: "1px solid #1e293b",
       borderRadius: 16,
       padding: "1.5rem",
+      ...style,
     }}
   >
     {title && (
