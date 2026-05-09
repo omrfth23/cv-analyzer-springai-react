@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: cv-analyzer
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cvanalyzer
+    username: postgres
+    password: secret
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4o
+          temperature: 0.3
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:my-super-secret-key-at-least-256-bits-long}
+    expiration: 86400000   # 24 saat
+
+  minio:
+    endpoint: http://localhost:9000
+    access-key: minioadmin
+    secret-key: minioadmin
+    bucket: cv-files
+
+  github:
+    token: ${GITHUB_TOKEN:}
+
+server:
+  port: 8080
