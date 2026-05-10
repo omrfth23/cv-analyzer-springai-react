@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/Card";
 import type { GitHubProfile } from "@/types";
 
-export const GithubSection = ({ profile, githubScore }: { profile: GitHubProfile; githubScore: number }) => (
+export const GithubSection = ({ profile }: { profile: GitHubProfile }) => (
   <div style={{ display: "grid", gridTemplateColumns: "300px 1fr", gap: 16 }}>
     <Card title="👤 GitHub Profili">
       <div style={{ textAlign: "center", marginBottom: "1.5rem" }}>

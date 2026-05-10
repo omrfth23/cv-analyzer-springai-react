@@ -76,7 +76,7 @@ export const ResultPage = () => {
         </div>
       )}
 
-      {tab === "github" && githubProfile && <GithubSection profile={githubProfile} githubScore={result.sections.github.score} />}
+      {tab === "github" && githubProfile && <GithubSection profile={githubProfile} />}
 
       {tab === "sections" && (
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
