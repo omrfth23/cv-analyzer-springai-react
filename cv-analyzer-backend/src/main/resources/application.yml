@@ -22,7 +22,7 @@ spring:
 
   ai:
     openai:
-      api-key: ${OPENAI_API_KEY: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}
+      api-key: ${OPENAI_API_KEY:your-openapi-key}
       chat:
         options:
           model: gpt-4o
@@ -36,7 +36,7 @@ spring:
 app:
   jwt:
     secret: ${JWT_SECRET:b7f4c9e2a1d84f6bb2c7e91a5d3f8c6ab9e4d1f7c2a8e5b6d9f3a1c7e4b8f2d}
-    expiration: 86400000   # 24 saat
+    expiration: 86400000   
 
   minio:
     endpoint: ${MINIO_ENDPOINT:http://localhost:9000}
