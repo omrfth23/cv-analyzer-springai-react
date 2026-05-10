@@ -1,6 +1,7 @@
 package com.omrfth.cv_analyzer_backend.infrastructure.ai;
 
-import com.cvanalyzer.domain.github.GitHubProfile;
+
+import com.omrfth.cv_analyzer_backend.domain.github.GitHubProfile;
 
 public class CVAnalysisPrompts {
 

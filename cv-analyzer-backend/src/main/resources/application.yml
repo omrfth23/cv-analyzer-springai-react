@@ -3,9 +3,9 @@ spring:
     name: cv-analyzer
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/cvanalyzer
-    username: postgres
-    password: secret
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/cvanalyzer}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:1234}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -17,12 +17,12 @@ spring:
 
   data:
     redis:
-      host: localhost
-      port: 6379
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
 
   ai:
     openai:
-      api-key: ${OPENAI_API_KEY}
+      api-key: ${OPENAI_API_KEY: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}
       chat:
         options:
           model: gpt-4o
@@ -35,13 +35,13 @@ spring:
 
 app:
   jwt:
-    secret: ${JWT_SECRET:my-super-secret-key-at-least-256-bits-long}
+    secret: ${JWT_SECRET:b7f4c9e2a1d84f6bb2c7e91a5d3f8c6ab9e4d1f7c2a8e5b6d9f3a1c7e4b8f2d}
     expiration: 86400000   # 24 saat
 
   minio:
-    endpoint: http://localhost:9000
-    access-key: minioadmin
-    secret-key: minioadmin
+    endpoint: ${MINIO_ENDPOINT:http://localhost:9000}
+    access-key: ${MINIO_ACCESS_KEY:minioadmin}
+    secret-key: ${MINIO_SECRET_KEY:minioadmin}
     bucket: cv-files
 
   github:
@@ -49,3 +49,4 @@ app:
 
 server:
   port: 8080
+

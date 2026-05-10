@@ -2,6 +2,7 @@ package com.omrfth.cv_analyzer_backend.domain.github;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -18,23 +19,33 @@ public class GitHubService {
             .defaultHeader("Accept", "application/vnd.github.v3+json")
             .build();
 
+
+    private static final ParameterizedTypeReference<Map<String, Object>> MAP_TYPE =
+            new ParameterizedTypeReference<>() {};
+
+    private static final ParameterizedTypeReference<List<Map<String, Object>>> LIST_MAP_TYPE =
+            new ParameterizedTypeReference<>() {};
+
     public GitHubProfile fetchProfile(String username) {
-        // Kullanıcı bilgisi
+
+        // User Info
         Map<String, Object> user = webClient.get()
                 .uri("/users/{u}", username)
                 .headers(h -> { if (!githubToken.isBlank()) h.setBearerAuth(githubToken); })
                 .retrieve()
-                .bodyToMono(Map.class)
+                .bodyToMono(MAP_TYPE)
                 .block();
 
-        // Repolar
+        // Repos
         List<Map<String, Object>> repos = webClient.get()
                 .uri("/users/{u}/repos?sort=stars&per_page=6", username)
                 .headers(h -> { if (!githubToken.isBlank()) h.setBearerAuth(githubToken); })
                 .retrieve()
-                .bodyToFlux(Map.class)
-                .collectList()
+                .bodyToMono(LIST_MAP_TYPE)
                 .block();
+
+        if (user == null) throw new RuntimeException("GitHub kullanıcısı bulunamadı: " + username);
+        if (repos == null) repos = List.of();
 
         return GitHubProfile.builder()
                 .login(username)
@@ -62,7 +73,8 @@ public class GitHubService {
                 .stars((Integer) r.getOrDefault("stargazers_count", 0))
                 .language((String) r.getOrDefault("language", "Unknown"))
                 .htmlUrl((String) r.get("html_url"))
-                .build()).toList();
+                .build()
+        ).toList();
     }
 
     private List<Map<String, Object>> calculateLanguages(List<Map<String, Object>> repos) {
@@ -78,6 +90,7 @@ public class GitHubService {
                 .map(e -> Map.<String, Object>of(
                         "name", e.getKey(),
                         "percent", total > 0 ? (e.getValue() * 100 / total) : 0
-                )).toList();
+                ))
+                .toList();
     }
 }

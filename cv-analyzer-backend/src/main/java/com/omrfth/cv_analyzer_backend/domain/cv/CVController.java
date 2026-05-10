@@ -1,5 +1,6 @@
 package com.omrfth.cv_analyzer_backend.domain.cv;
 
+import com.omrfth.cv_analyzer_backend.domain.analysis.AnalysisService;
 import com.omrfth.cv_analyzer_backend.shared.dto.AnalysisRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;

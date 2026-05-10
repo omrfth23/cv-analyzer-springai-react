@@ -3,7 +3,9 @@ package com.omrfth.cv_analyzer_backend.domain.analysis;
 
 import com.omrfth.cv_analyzer_backend.domain.cv.CV;
 import com.omrfth.cv_analyzer_backend.domain.cv.CVService;
+import com.omrfth.cv_analyzer_backend.domain.github.GitHubProfile;
 import com.omrfth.cv_analyzer_backend.domain.github.GitHubService;
+import com.omrfth.cv_analyzer_backend.infrastructure.ai.AIAnalysisClient;
 import com.omrfth.cv_analyzer_backend.shared.dto.AnalysisRequest;
 import com.omrfth.cv_analyzer_backend.shared.dto.ProgressUpdate;
 import lombok.RequiredArgsConstructor;

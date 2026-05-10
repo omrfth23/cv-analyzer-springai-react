@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cvanalyzer
+    username: postgres
+    password: 1234
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+app:
+  minio:
+    endpoint: http://localhost:9000
+
+logging:
+  level:
+    root: INFO
+    com.omrfth: DEBUG

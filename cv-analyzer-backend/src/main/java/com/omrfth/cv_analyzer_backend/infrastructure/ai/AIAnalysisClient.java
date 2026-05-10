@@ -1,12 +1,12 @@
 package com.omrfth.cv_analyzer_backend.infrastructure.ai;
 
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.omrfth.cv_analyzer_backend.domain.analysis.AnalysisResult;
+import com.omrfth.cv_analyzer_backend.domain.github.GitHubProfile;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Component;
+import tools.jackson.databind.ObjectMapper;
 
 @Component
 @RequiredArgsConstructor
@@ -25,12 +25,24 @@ public class AIAnalysisClient {
                 .content();
 
         try {
-            // JSON fence'lerini temizle
-            String clean = response.replaceAll("```json|```", "").trim();
-            return objectMapper.readValue(clean, AnalysisResult.class);
+            String clean = response.replaceAll("(?s)```json|```", "").trim();
+            AnalysisResultDto dto = objectMapper.readValue(clean, AnalysisResultDto.class);
+            return mapToEntity(dto);
         } catch (Exception e) {
-            log.error("AI yanıtı parse edilemedi: {}", response, e);
-            throw new RuntimeException("AI yanıtı işlenemedi");
+            log.error("AI yanıtı parse edilemedi. Yanıt: {}", response, e);
+            throw new RuntimeException("AI yanıtı işlenemedi: " + e.getMessage());
         }
+    }
+
+    private AnalysisResult mapToEntity(AnalysisResultDto dto) {
+        return AnalysisResult.builder()
+                .overallScore(dto.getOverallScore())
+                .jobMatch(dto.getJobMatch())
+                .atsScore(dto.getAtsScore())
+                .sections(dto.getSections())
+                .strengths(dto.getStrengths())
+                .suggestions(dto.getSuggestions())
+                .atsIssues(dto.getAtsIssues())
+                .build();
     }
 }

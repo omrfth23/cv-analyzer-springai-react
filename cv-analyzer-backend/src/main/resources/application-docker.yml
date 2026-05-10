@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/cvanalyzer
+    username: postgres
+    password: secret
+
+  data:
+    redis:
+      host: redis
+      port: 6379
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+app:
+  minio:
+    endpoint: http://minio:9000
+
+logging:
+  level:
+    root: INFO
+    com.omrfth: DEBUG
