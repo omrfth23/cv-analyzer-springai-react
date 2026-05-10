@@ -10,6 +10,8 @@ const queryClient = new QueryClient();
 
 const PageRouter = () => {
   const { view } = useAnalysisStore();
+
+  // Auth kontrolü kaldırıldı
   return (
     <>
       {view === "landing"  && <LandingPage />}

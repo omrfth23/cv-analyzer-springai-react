@@ -11,7 +11,7 @@ const STATS = [
 
 export const LandingPage = () => {
   const { setView } = useAnalysisStore();
-  const title = useTypewriter("CV Analyzer Pro", 65);
+  const title = useTypewriter("CV Analyzer", 65);
 
   return (
     <div
@@ -89,10 +89,10 @@ export const LandingPage = () => {
         <h1
           style={{
             fontSize: "clamp(1.5rem, 5vw, 3rem)",
-            fontWeight: 900,
+            fontWeight: 700,
             lineHeight: 1.2,
             marginBottom: "1.5rem",
-            fontFamily: "'Syne', sans-serif",
+            fontFamily: "'Space Grotesk', sans-serif",
             letterSpacing: "-1px",
           }}
         >
@@ -148,22 +148,7 @@ export const LandingPage = () => {
               boxShadow: "0 0 40px #05966940",
             }}
           >
-            🚀 Analizi Başlat
-          </button>
-          <button
-            onClick={() => setView("upload")}
-            style={{
-              background: "transparent",
-              color: "#94a3b8",
-              border: "1px solid #374151",
-              borderRadius: 12,
-              padding: "16px 32px",
-              fontSize: "1.05rem",
-              fontWeight: 600,
-              cursor: "pointer",
-            }}
-          >
-            Demo Gör →
+             Analizi Başlat
           </button>
         </div>
 

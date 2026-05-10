@@ -53,7 +53,7 @@ export const UploadPage = () => {
         >
           ← Geri Dön
         </button>
-        <h2 style={{ fontSize: "2rem", fontWeight: 800, color: "#f1f5f9", fontFamily: "'Syne', sans-serif", marginBottom: 8 }}>
+        <h2 style={{ fontSize: "2rem", fontWeight: 800, color: "#f1f5f9", fontFamily: "'Space Grotesk', sans-serif", marginBottom: 8 }}>
           Analizi Yapılandır
         </h2>
         <p style={{ color: "#64748b", marginBottom: "2.5rem" }}>CV'nizi yükleyin ve tercihlerinizi ayarlayın</p>
@@ -80,7 +80,7 @@ export const UploadPage = () => {
         {/* Inputs */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: "1.5rem" }}>
           {[
-            { label: "GitHub Kullanıcı Adı", icon: "🐙", value: githubUsername, onChange: setGithubUsername, placeholder: "kullanici-adi", mono: true },
+            { label: "GitHub Kullanıcı Adı", icon: "🐙", value: githubUsername, onChange: setGithubUsername, placeholder: "omrfth23", mono: true },
             { label: "Hedef Pozisyon", icon: "💼", value: jobDescription, onChange: setJobDescription, placeholder: "Senior Backend Engineer", mono: false },
           ].map(({ label, icon, value, onChange, placeholder, mono }) => (
             <div key={label}>

@@ -29,8 +29,13 @@ export const useGetResult = (cvId: number | null) => {
   return useMutation({
     mutationFn: () => getAnalysisResult(cvId!),
     onSuccess: (data) => {
+      console.log("[useGetResult] Success:", data);
       setResult(data);
       setView("result");
+    },
+    onError: (error) => {
+      console.log("[useGetResult] Still loading or error:", error);
+      // Sessizce devam et - result henüz hazır değil
     },
   });
 };

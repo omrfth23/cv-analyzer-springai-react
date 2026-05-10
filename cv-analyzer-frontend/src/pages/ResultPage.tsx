@@ -27,7 +27,7 @@ export const ResultPage = () => {
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem", flexWrap: "wrap", gap: 12 }}>
         <div>
-          <h2 style={{ fontSize: "1.8rem", fontWeight: 800, color: "#f1f5f9", fontFamily: "'Syne', sans-serif" }}>Analiz Sonuçları</h2>
+          <h2 style={{ fontSize: "1.8rem", fontWeight: 800, color: "#f1f5f9", fontFamily: "'Space Grotesk', sans-serif" }}>Analiz Sonuçları</h2>
           <p style={{ color: "#4b5563", marginTop: 4 }}>
             Tamamlandı • {new Date(result.createdAt).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" })}
           </p>

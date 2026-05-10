@@ -9,6 +9,7 @@ import com.omrfth.cv_analyzer_backend.shared.exception.AppException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,17 +22,19 @@ public class CVService {
     private final UserRepository userRepository;
     private final MinioStorageService storageService;
     private final PdfTextExtractor pdfExtractor;
+    private final PasswordEncoder passwordEncoder;
 
     public CV upload(MultipartFile file, String email) {
-
+        // Test user yoksa otomatik oluştur
         User user = userRepository.findByEmail(email)
                 .orElseGet(() -> {
-                    log.warn("Kullanıcı bulunamadı, guest olarak devam ediliyor: {}", email);
-                    return userRepository.findAll()
-                            .stream().findFirst()
-                            .orElseThrow(() -> new AppException("Hiç kullanıcı yok, önce kayıt olun", HttpStatus.NOT_FOUND));
+                    log.info("Test kullanıcısı oluşturuluyor: {}", email);
+                    return userRepository.save(User.builder()
+                            .email(email)
+                            .password(passwordEncoder.encode("123456"))
+                            .name("Test User")
+                            .build());
                 });
-
 
         String objectKey = "cv/" + user.getId() + "/" + file.getOriginalFilename();
         try {
@@ -39,7 +42,6 @@ public class CVService {
         } catch (Exception e) {
             log.warn("Storage yüklemesi atlandı: {}", e.getMessage());
         }
-
 
         String text = "";
         try {

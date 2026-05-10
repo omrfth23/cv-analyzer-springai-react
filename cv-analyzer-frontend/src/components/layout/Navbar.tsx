@@ -17,15 +17,10 @@ export const Navbar = () => {
         style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}
         onClick={() => { reset(); setView("landing"); }}
       >
-        <span style={{ fontSize: "1.4rem" }}>🤖</span>
-        <span style={{ fontWeight: 800, color: "#f1f5f9", fontFamily: "'Syne', sans-serif" }}>
+        <span style={{ fontSize: "1.5rem" }}>🤖</span>
+        <span style={{ fontSize: "1.4rem",fontWeight: 800, color: "#f1f5f9", fontFamily: "'Space Grotesk', sans-serif" }}>
           CV Analyzer
         </span>
-        <span style={{
-          background: "#064e3b", color: "#6ee7b7",
-          fontSize: 10, fontWeight: 700,
-          borderRadius: 4, padding: "2px 6px", letterSpacing: 1,
-        }}>PRO</span>
       </div>
       <div style={{ display: "flex", gap: 8 }}>
         {TECH_BADGES.map((t) => (

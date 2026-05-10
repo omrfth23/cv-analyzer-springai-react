@@ -19,6 +19,6 @@ export const startAnalysis = async (
 };
 
 export const getAnalysisResult = async (cvId: number): Promise<AnalysisResult> => {
-  const { data } = await axiosClient.get(`/cv/${cvId}/result`);
+  const { data } = await axiosClient.get(`/analysis/${cvId}`);
   return data;
 };

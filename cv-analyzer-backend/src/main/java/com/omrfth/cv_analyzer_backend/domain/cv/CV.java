@@ -20,8 +20,10 @@ public class CV {
     private User user;
 
     private String originalFileName;
-    private String storagePath;      // MinIO object key
-    private String extractedText;    // PDF'den çıkarılan ham metin
+    private String storagePath;
+
+    @Column(columnDefinition = "TEXT")  // VARCHAR(255) yerine TEXT
+    private String extractedText;
 
     @Enumerated(EnumType.STRING)
     private CvStatus status;
