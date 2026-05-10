@@ -6,7 +6,7 @@ import { useUploadAndAnalyze } from "@/hooks/useAnalysis";
 
 export const UploadPage = () => {
   const [file, setFile] = useState<File | null>(null);
-  const { githubUsername, jobDescription, setGithubUsername, setJobDescription } = useAnalysisStore();
+  const { githubUsername, jobDescription, setGithubUsername, setJobDescription, setView } = useAnalysisStore();
   const { mutate, isPending } = useUploadAndAnalyze();
 
   const onDrop = useCallback((files: File[]) => {
@@ -25,6 +25,34 @@ export const UploadPage = () => {
   return (
     <div style={{ maxWidth: 720, margin: "0 auto", padding: "3rem 1.5rem" }}>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <button
+          onClick={() => setView("landing")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            background: "transparent",
+            border: "1px solid #374151",
+            borderRadius: 8,
+            padding: "8px 16px",
+            color: "#94a3b8",
+            fontSize: "0.9rem",
+            fontWeight: 500,
+            cursor: "pointer",
+            marginBottom: "2rem",
+            transition: "all 0.3s",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = "#6ee7b7";
+            e.currentTarget.style.color = "#6ee7b7";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = "#374151";
+            e.currentTarget.style.color = "#94a3b8";
+          }}
+        >
+          ← Geri Dön
+        </button>
         <h2 style={{ fontSize: "2rem", fontWeight: 800, color: "#f1f5f9", fontFamily: "'Syne', sans-serif", marginBottom: 8 }}>
           Analizi Yapılandır
         </h2>

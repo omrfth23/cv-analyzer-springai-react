@@ -33,7 +33,8 @@ export const ResultPage = () => {
           </p>
         </div>
         <div style={{ display: "flex", gap: 12 }}>
-          <button onClick={() => { reset(); setView("upload"); }} style={{ background: "transparent", color: "#94a3b8", border: "1px solid #374151", borderRadius: 10, padding: "10px 20px", cursor: "pointer", fontSize: 14 }}>← Yeni Analiz</button>
+          <button onClick={() => setView("landing")} style={{ background: "transparent", color: "#94a3b8", border: "1px solid #374151", borderRadius: 10, padding: "10px 20px", cursor: "pointer", fontSize: 14 }}>← Ana Sayfa</button>
+          <button onClick={() => { reset(); setView("upload"); }} style={{ background: "transparent", color: "#94a3b8", border: "1px solid #374151", borderRadius: 10, padding: "10px 20px", cursor: "pointer", fontSize: 14 }}>🔄 Yeni Analiz</button>
           <button style={{ background: "linear-gradient(135deg, #059669, #047857)", color: "#fff", border: "none", borderRadius: 10, padding: "10px 20px", cursor: "pointer", fontWeight: 700, fontSize: 14 }}>📥 Rapor İndir</button>
         </div>
       </div>

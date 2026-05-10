@@ -4,7 +4,7 @@ import { useAnalysisStore } from "@/store/analysisStore";
 import { useGetResult } from "@/hooks/useAnalysis";
 
 export const ProgressPage = () => {
-  const { cvId, progressUpdates, addProgress } = useAnalysisStore();
+  const { cvId, progressUpdates, addProgress, setView } = useAnalysisStore();
   const { mutate: fetchResult } = useGetResult(cvId);
 
   useWebSocket({
@@ -18,6 +18,34 @@ export const ProgressPage = () => {
 
   return (
     <div style={{ maxWidth: 600, margin: "0 auto", padding: "4rem 1.5rem", textAlign: "center" }}>
+      <button
+        onClick={() => setView("upload")}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          background: "transparent",
+          border: "1px solid #374151",
+          borderRadius: 8,
+          padding: "8px 16px",
+          color: "#94a3b8",
+          fontSize: "0.9rem",
+          fontWeight: 500,
+          cursor: "pointer",
+          marginBottom: "2rem",
+          transition: "all 0.3s",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = "#6ee7b7";
+          e.currentTarget.style.color = "#6ee7b7";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = "#374151";
+          e.currentTarget.style.color = "#94a3b8";
+        }}
+      >
+        ← Geri Dön
+      </button>
       <div style={{ fontSize: "3.5rem", marginBottom: "1.5rem", display: "inline-block", animation: "spin-slow 4s linear infinite" }}>🤖</div>
       <h2 style={{ fontSize: "1.8rem", fontWeight: 800, color: "#f1f5f9", marginBottom: 8, fontFamily: "'Syne', sans-serif" }}>
         Analiz Yapılıyor
