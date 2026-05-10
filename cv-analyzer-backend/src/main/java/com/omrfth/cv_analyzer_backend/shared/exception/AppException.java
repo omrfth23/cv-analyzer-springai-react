@@ -1,4 +1,13 @@
 package com.omrfth.cv_analyzer_backend.shared.exception;
 
-public class AppException {
+import lombok.Getter;
+import org.springframework.http.HttpStatus;
+
+@Getter
+public class AppException extends RuntimeException {
+    private final HttpStatus status;
+    public AppException(String message, HttpStatus status) {
+        super(message);
+        this.status = status;
+    }
 }

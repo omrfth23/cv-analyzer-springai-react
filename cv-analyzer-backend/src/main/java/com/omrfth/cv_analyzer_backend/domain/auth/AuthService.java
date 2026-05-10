@@ -1,10 +1,8 @@
 package com.omrfth.cv_analyzer_backend.domain.auth;
 
-
-import com.cvanalyzer.domain.user.*;
-import com.cvanalyzer.shared.exception.AppException;
 import com.omrfth.cv_analyzer_backend.domain.user.User;
 import com.omrfth.cv_analyzer_backend.domain.user.UserRepository;
+import com.omrfth.cv_analyzer_backend.shared.exception.AppException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.*;
