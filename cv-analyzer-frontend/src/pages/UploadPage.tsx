@@ -6,11 +6,15 @@ import { useUploadAndAnalyze } from "@/hooks/useAnalysis";
 
 export const UploadPage = () => {
   const [file, setFile] = useState<File | null>(null);
+  const [error, setError] = useState<string>("");
   const { githubUsername, jobDescription, setGithubUsername, setJobDescription, setView } = useAnalysisStore();
   const { mutate, isPending } = useUploadAndAnalyze();
 
   const onDrop = useCallback((files: File[]) => {
-    if (files[0]) setFile(files[0]);
+    if (files[0]) {
+      setFile(files[0]);
+      setError("");
+    }
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -18,7 +22,20 @@ export const UploadPage = () => {
   });
 
   const handleSubmit = () => {
-    if (!file) return;
+    if (!file) {
+      setError("📄 Lütfen bir PDF dosyası yükleyin");
+      return;
+    }
+    if (!githubUsername.trim()) {
+      setError("🐙 Lütfen GitHub kullanıcı adınızı girin");
+      return;
+    }
+    if (!jobDescription.trim()) {
+      setError("💼 Lütfen hedef pozisyonunuzu girin");
+      return;
+    }
+    
+    setError("");
     mutate(file);
   };
 
@@ -103,6 +120,30 @@ export const UploadPage = () => {
             </div>
           ))}
         </div>
+
+        {/* Error Message */}
+        {error && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            style={{
+              background: "#7f1d1d",
+              border: "1px solid #dc2626",
+              borderRadius: 10,
+              padding: "14px 16px",
+              marginBottom: "1.5rem",
+              color: "#fca5a5",
+              fontSize: "0.95rem",
+              fontWeight: 500,
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+            }}
+          >
+            <span style={{ fontSize: "1.2rem" }}>⚠️</span>
+            {error}
+          </motion.div>
+        )}
 
         <button
           onClick={handleSubmit}
